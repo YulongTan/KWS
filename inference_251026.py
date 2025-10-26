@@ -1,5 +1,7 @@
 import torch
 import torchaudio
+from torchaudio.datasets import SPEECHCOMMANDS
+
 from BNN_KWS_GSC import BNN_KWS, waveform_to_logmel
 
 ckpt = torch.load("bnn_KWS.pt", map_location="cpu")
@@ -12,6 +14,9 @@ model = BNN_KWS(
 )
 model.load_state_dict(ckpt["model"])
 model.eval()
+
+# 确保 Speech Commands 数据集已下载到当前目录
+SPEECHCOMMANDS(root="./speech_commands", download=True)
 
 waveform, sr = torchaudio.load("D:/Vitis/USERS/10_Zedboard_audio_in/KWS/yes.wav")
 feat = waveform_to_logmel(waveform, sr).unsqueeze(0)  # [1, 1, 40, 98]
