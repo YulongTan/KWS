@@ -25,7 +25,7 @@ model.eval()
 # 确保 Speech Commands 数据集已下载到脚本所在目录
 SPEECHCOMMANDS(root=str(DATASET_ROOT), download=True)
 
-waveform_path = SCRIPT_DIR / "yes.wav"
+waveform_path = SCRIPT_DIR / "no.wav"
 waveform, sr = torchaudio.load(str(waveform_path))
 feat = waveform_to_logmel(waveform, sr).unsqueeze(0)  # [1, 1, 40, 98]
 with torch.no_grad():
