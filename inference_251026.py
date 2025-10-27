@@ -34,14 +34,23 @@ with torch.no_grad():
 
 print(pred_idx)
 
-# 可选：恢复标签字符串
-labels = sorted(
-    {
-        sample[2]
-        for sample in SPEECHCOMMANDS(
-            str(DATASET_ROOT), subset="training", download=False
-        )
-    }
-)
-pred_label = labels[pred_idx]
-print(pred_label)
+# 固定标签顺序
+labels = [
+    'backward', 'bed', 'bird', 'cat', 'dog', 'down', 'eight', 'five', 'follow', 'forward',
+    'four', 'go', 'happy', 'house', 'learn', 'left', 'marvin', 'nine', 'no', 'off',
+    'on', 'one', 'right', 'seven', 'sheila', 'six', 'stop', 'three', 'tree', 'two',
+    'up', 'visual', 'wow', 'yes', 'zero'
+]
+
+print(labels[pred_idx])
+# # 可选：恢复标签字符串
+# labels = sorted(
+#     {
+#         sample[2]
+#         for sample in SPEECHCOMMANDS(
+#             str(DATASET_ROOT), subset="training", download=False
+#         )
+#     }
+# )
+# pred_label = labels[pred_idx]
+# print(pred_label)
